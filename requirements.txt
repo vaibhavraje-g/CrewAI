@@ -1,0 +1,19 @@
+# CrewAI and Dependencies
+crewai>=0.1.0
+crewai-tools>=0.1.0
+
+# LangChain
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langchain-community>=0.0.20
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+
+# Optional: Additional tools and integrations
+# Uncomment as needed for your experiments
+# requests>=2.31.0
+# beautifulsoup4>=4.12.0
+# selenium>=4.15.0
+# duckduckgo-search>=4.0.0
