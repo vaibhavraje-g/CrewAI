@@ -1,92 +1,80 @@
-# CrewAI Learning Repository
+# 🤖 Production Multi-Agent Systems with CrewAI
 
-A personal repository for learning and experimenting with [CrewAI](https://github.com/joaomdmoura/crewAI), a cutting-edge framework for orchestrating role-playing, autonomous AI agents.
+An enterprise-ready reference repository demonstrating modular, autonomous multi-agent systems using the **CrewAI** orchestration framework.
 
-## 📚 About
-
-This repository contains my experiments, examples, and learning projects as I explore CrewAI's capabilities. CrewAI enables the creation of sophisticated multi-agent systems where AI agents collaborate to solve complex tasks.
-
-## 🎯 Purpose
-
-- Learn CrewAI fundamentals and advanced concepts
-- Experiment with different agent configurations
-- Build practical examples and use cases
-- Document my learning journey
-
-## 📂 Repository Structure
-
-```
-├── examples/          # Simple examples and tutorials
-├── projects/          # More complex multi-agent projects
-├── experiments/       # Experimental features and tests
-├── notes/            # Learning notes and documentation
-└── requirements.txt  # Python dependencies
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Python 3.10 or higher
-- pip (Python package manager)
-
-### Installation
-
-1. Clone this repository:
-```bash
-git clone https://github.com/yourusername/CrewAI.git
-cd CrewAI
-```
-
-2. Create a virtual environment (recommended):
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Set up your environment variables (API keys, etc.):
-```bash
-cp .env.example .env
-# Edit .env with your API keys
-```
-
-## 📖 Examples
-
-_Examples will be added as I progress through my learning journey._
-
-## 🛠️ Technologies
-
-- [CrewAI](https://github.com/joaomdmoura/crewAI) - Multi-agent orchestration framework
-- [LangChain](https://github.com/langchain-ai/langchain) - LLM application framework
-- Python 3.10+
-
-## 📝 Learning Resources
-
-- [CrewAI Documentation](https://docs.crewai.com/)
-- [CrewAI GitHub](https://github.com/joaomdmoura/crewAI)
-- [CrewAI Examples](https://github.com/joaomdmoura/crewAI-examples)
-
-## 🤝 Contributing
-
-This is a personal learning repository, but feel free to:
-- Open issues for suggestions or questions
-- Fork the repo for your own learning
-- Share your own CrewAI examples
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Thanks to the CrewAI team for creating this amazing framework
-- The AI community for inspiration and shared knowledge
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
+![CrewAI](https://img.shields.io/badge/CrewAI-Orchestration-FF4B4B?logo=ai&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-Tools-1C3C3C?logo=chainlink&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
-**Note**: This is a learning repository. Code here is for educational purposes and experimentation.
+## 🏛️ Multi-Agent Architecture Patterns
+
+```
+                          ┌────────────────────────┐
+                          │   HIERARCHICAL CREW    │
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                        ┌───────────────────────────┐
+                        │    Manager Agent (LLM)    │
+                        │ • Plans task decomposition│
+                        │ • Delegates to workers    │
+                        │ • Reviews output quality  │
+                        └─────────────┬─────────────┘
+                                      │
+               ┌──────────────────────┴──────────────────────┐
+               ▼                                             ▼
+  ┌─────────────────────────┐                   ┌─────────────────────────┐
+  │      Worker Agent 1     │                   │      Worker Agent 2     │
+  │ • Role: Senior Analyst  │                   │ • Role: Lead Writer     │
+  │ • Tools: Search / Scrape│                   │ • Tools: Formatter      │
+  └─────────────────────────┘                   └─────────────────────────┘
+```
+
+---
+
+## 📂 Modular Architectures & Examples
+
+| Directory | Execution Model | Description | Key Components |
+| :--- | :--- | :--- | :--- |
+| **`examples/01-basic-crew`** | **Sequential** | Basic multi-agent pipeline passing context from Researcher to Writer. | `Agent`, `Task`, `Crew`, Sequential Process |
+| **`examples/02-with-tools`** | **Tool-Calling** | Agents equipped with web search and custom Python functions for dynamic data retrieval. | Custom Tools, Serper API, Error Handling |
+| **`examples/03-hierarchical-crew`** | **Hierarchical** | Autonomous manager agent delegates tasks to specialized workers based on capability. | Manager LLM, Dynamic Delegation, Consensus |
+
+---
+
+## 🚀 Quick Execution Guide
+
+### Prerequisites
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: .\venv\Scripts\activate
+pip install crewai langchain-community
+```
+
+### Running the Examples
+
+1. **Basic Sequential Crew**:
+   ```bash
+   python examples/01-basic-crew/basic_crew.py
+   ```
+
+2. **Crew with Tool Calling**:
+   ```bash
+   python examples/02-with-tools/crew_with_tools.py
+   ```
+
+3. **Hierarchical Manager Delegation Crew**:
+   ```bash
+   python examples/03-hierarchical-crew/hierarchical_crew.py
+   ```
+
+---
+
+## 🛡️ Production Best Practices
+
+- **Role Definition**: Specific personas with distinct `role`, `goal`, and `backstory` attributes yield superior reasoning compared to general prompts.
+- **Context Passing**: Explicitly declare `context=[prior_task]` on downstream tasks to ensure dependencies are accurately mapped without hallucinations.
+- **Cost & Latency Management**: Use fast, cost-effective models (e.g., Nova Lite / GLM 5.3 Free) for worker nodes, and reserve high-capability reasoning models for manager oversight.
